@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    
+    <div class="card">
+        <div class="card-header">
+          Your Profile 
+          <a href="{% url 'edit-doctor' %}" class="btn btn-primary btn-sm float-right">Edit Profile</a>
+        </div>
+        <div class="card-body">
+            {% if doctor.image %}
+            <table class="table">
+                <thead class="thead">
+                  <tr>
+                    <th scope="col">Sr.NO</th>
+                    <td>{{ doctor.username }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <td>{{ doctor.name }}</td>
+                    </tr>
+                    <tr>
+                    <th scope="col">Specialization</th>
+                    <td>{{ doctor.specialization }}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Image</th>
+                    <td><img src="{{ doctor.image.url }}" width="50" height="40" alt=""></td>
+                </tr>
+                <tr>
+                    <th scope="col">Clinical Address</th>
+                    <td>{{ doctor.clinical_address }}</td>
+                  </tr>
+                </thead>
+              </table>
+        </div>
+        {% endif %}
+        
+    </div>
+    
+</div>
+
+{% endblock %}

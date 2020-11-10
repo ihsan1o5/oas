@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    
+    <div class="card">
+        <div class="card-header">
+          Edit Your Profile 
+        </div>
+        <div class="card-body">
+            <form action="{% url 'edit-doctor' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% include 'partials/_messages.html' %}
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name:</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" name="name" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Specialization:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="specialization" placeholder="Specialization">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Clinical Address:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="clinical_address" placeholder="clinical Address">
+                </div>
+                <div class="form-group">
+                    <label for="image">Image:</label>
+                    <input type="file" class="form-control" name="image" required>
+                </div>
+                <input type="submit" class="btn btn-success btn-sm float-right" value="Submit">
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

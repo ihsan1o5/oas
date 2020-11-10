@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% include 'partials/_messages.html' %}
+
+    <div class="card">
+        <div class="card-header">
+          Doctors Schdule 
+          <a href="{% url 'add-schedule' %}" class="btn btn-sm btn-primary float-right">Add New</a>
+        </div>
+        <div class="card-body">
+          <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Sr.NO</th>
+                  <th scope="col">Dr.Name</th>
+                  <th scope="col">Days</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for schedule in schedules %}
+                <tr>
+                    <td>{{ schedule.id }}</td>
+                    <td>{{ schedule.dr_name }}</td>
+                    <td>{{ schedule.days }}</td>
+                    <td>{{ schedule.time }}</td>
+                    <td>
+                      <a href="{% url 'edit-schedule' schedule.id %}" class="btn btn-sm btn-primary">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+        
+      </div>
+    
+{% endblock %}

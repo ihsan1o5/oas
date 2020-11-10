@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    
+    <div class="card">
+        <div class="card-header">
+          Add New Schedule
+        </div>
+        <div class="card-body">
+            <form action="{% url 'add-schedule' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% include 'partials/_messages.html' %}
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Select Dr.Name:</label>
+                  <select name="doctor_username" id="" class="form-control">
+                      <option value="">Select Name....</option>
+                      {% for doctor in doctors %}
+                      <option value="{{ doctor.username }}">{{ doctor.name }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group">
+                    <label for="working_days">Working Days:</label>
+                    <input type="text" class="form-control" required value="{{ form_data.working_days }}" name="working_days" placeholder="Working Days eg:(Moday, Friday ect)">
+                </div>
+                <div class="form-group">
+                    <label for="time">Availability Time:</label>
+                    <input type="text" class="form-control" required name="time" value="{{ form_data.time }}" placeholder="Availability Time eg:(10:00am - 02:00pm)">
+                </div>
+                <input type="submit" class="btn btn-success btn-sm float-right" value="Submit">
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

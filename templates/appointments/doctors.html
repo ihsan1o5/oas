@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    
+    <div class="card">
+        <div class="card-header">
+          All Doctors 
+          <a href="{% url 'add-doctor' %}" class="btn btn-primary btn-sm float-right">Add New</a>
+        </div>
+        <div class="card-body">
+            {% include 'partials/_messages.html' %}
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Sr.NO</th>
+                    <th scope="col">Dr.Name</th>
+                    <th scope="col">Specialization</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Clinical Address</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for doctor in doctors %}
+                    <tr>
+                        <td>{{ doctor.id }}</td>
+                        <td>{{ doctor.name }}</td>
+                        <td>{{ doctor.specialization }}</td>
+                        {% if doctor.image %}
+                        <td><img src="{{ doctor.image.url }}" width="40" height="30" alt=""></td>
+                        {% endif %}
+                        <td>{{ doctor.clinical_address }}</td>
+                        <td>
+                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

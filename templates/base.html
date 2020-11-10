@@ -1,0 +1,85 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <title>Online Appointment - System</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+    <div class="main-wrapper">
+        {% include 'partials/_header.html' %}
+
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main {{ accountType.account_type }} </li>
+                        <li class="active">
+                            <a href="{% url 'index' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                        </li>
+                        {% if accountType.account_type == 'admin' %}
+                        <li>
+                            <a href="{% url 'doctor' %}"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
+                        </li>
+                        {% endif %}
+                        {% if accountType.account_type == 'doctor' %}
+                        <li>
+                            <a href="{% url 'all-patients' %}"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
+                        </li>
+                        {% endif %}
+                        {% if accountType.account_type == 'user' %}
+                        <li>
+                            <a href="{% url 'tack_appointment' %}"><i class="fa fa-calendar"></i> <span>Take Appointment</span></a>
+                        </li>
+                        {% endif %}
+                        {% if accountType.account_type == 'admin' or accountType.account_type == 'doctor' %}
+                        <li>
+                            <a href="{% url 'schedule' %}"><i class="fa fa-hospital-o"></i> <span>Schedule</span></a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-wrapper">
+            <div class="content">
+                
+				
+                {% block content %}
+
+                {% endblock %}
+                
+            </div>
+        </div>
+        
+    </div>
+    <div class="sidebar-overlay" data-reff=""></div>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'js/Chart.bundle.js' %}"></script>
+    <script src="{% static 'js/chart.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+
+</body>
+
+
+
+</html>

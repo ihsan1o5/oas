@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    
+    <div class="card">
+        <div class="card-header">
+          Fill The Form To Take an Appointment
+        </div>
+        <div class="card-body">
+            <form action="{% url 'tack_appointment' %}" method="post">
+                {% csrf_token %}
+                {% include 'partials/_messages.html' %}
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name:</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" name="name" required aria-describedby="emailHelp" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Father Name:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="father_name" required aria-describedby="emailHelp" placeholder="Father Name">
+                </div>
+                <div class="form-group">
+                    <label for="">Select Gender:</label>
+                    <select name="gender" id="" class="form-control">
+                        <Option value="">Select Gender....</Option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="doctor">Select Doctor:</label>
+                    <select name="doctor" id="" class="form-control">
+                        <Option value="">Select Doctor....</Option>
+                        {% for doctor in doctors %}
+                            <option value="{{ doctor.username }}">{{ doctor.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="exampleInputEmail1">Age:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="age" required aria-describedby="emailHelp" placeholder="Age">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Phone:</label>
+                    <input type="number" class="form-control" id="exampleInputEmail1" name="phone" required aria-describedby="emailHelp" placeholder="Phone Numer">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="email" required aria-describedby="emailHelp" placeholder="Email">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="exampleInputEmail1">Date:</label>
+                    <input type="date" class="form-control" size="" aria-describedby="emailHelp" name="date" required placeholder="Select Date">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Describe Your Illness:</label>
+                    <textarea name="description" id="" cols="30" rows="3" required placeholder="Describe Your Illness" class="form-control"></textarea>
+                </div>
+                <input type="submit" class="btn btn-success btn-sm float-right" value="Submit">
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

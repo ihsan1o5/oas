@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% include 'partials/_messages.html' %}
+
+    <div class="card">
+        
+        <div class="card-header">
+          All Patients 
+        </div>
+        <div class="card-body">
+          <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Sr.NO</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Father Name</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Problem</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for oppointment in appointments %}
+                  <tr>
+                      <td>{{ oppointment.id }}</td>
+                      <td>{{ oppointment.name }}</td>
+                      <td>{{ oppointment.father_name }}</td>
+                      <td>{{ oppointment.phone }}</td>
+                      <td>{{ oppointment.email }}</td>
+                      <td>{{ oppointment.date }}</td>
+                      <td>{{ oppointment.description }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+        
+      </div>
+    
+{% endblock %}

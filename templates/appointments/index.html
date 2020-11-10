@@ -1,0 +1,118 @@
+Dr. Haseeba{% extends 'base.html' %}
+
+{% block content %}
+
+    {% include 'partials/_messages.html' %}
+
+    <div class="card">
+        {% if accountType.account_type == 'user' %}
+        <div class="card-header">
+          Your Appointments
+          <a href="{% url 'tack_appointment' %}" class="btn btn-primary btn-sm float-right">Take New</a>
+        </div>
+        <div class="card-body">
+          <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Appointment.NO</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Father Name</th>
+                  <th scope="col">Doctor Name</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for oppointment in appointments %}
+                  <tr>
+                      <td>{{ oppointment.id }}</td>
+                      <td>{{ oppointment.name }}</td>
+                      <td>{{ oppointment.father_name }}</td>
+                      <td>{{ oppointment.doctor }}</td>
+                      <td>{{ oppointment.phone }}</td>
+                      <td>{{ oppointment.email }}</td>
+                      <td>{{ oppointment.date }}</td>
+                      <td>{{ oppointment.description }}</td>
+                      <td>{{ oppointment.status }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+        {% elif accountType.account_type == 'doctor' %}
+        <div class="card-header">
+          Patients 
+        </div>
+        <div class="card-body">
+          <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Sr.NO</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Father Name</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Problem</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for oppointment in appointments %}
+                  <tr>
+                      <td>{{ oppointment.id }}</td>
+                      <td>{{ oppointment.name }}</td>
+                      <td>{{ oppointment.father_name }}</td>
+                      <td>{{ oppointment.phone }}</td>
+                      <td>{{ oppointment.email }}</td>
+                      <td>{{ oppointment.date }}</td>
+                      <td>{{ oppointment.description }}</td>
+                      <td>
+                        <a href="{% url 'change-appointment-status-done' oppointment.id %}" class="btn btn-sm btn-primary">Done</a> / <a href="{% url 'change-appointment-status-cancel' oppointment.id %}" class="btn btn-sm btn-danger">Cancel</a>
+                      </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+        {% elif accountType.account_type == 'admin' %}
+        <div class="card-header">
+          All Appointments 
+        </div>
+        <div class="card-body">
+          <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Sr.NO</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Father Name</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Problem</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for oppointment in appointments %}
+                  <tr>
+                      <td>{{ oppointment.id }}</td>
+                      <td>{{ oppointment.name }}</td>
+                      <td>{{ oppointment.father_name }}</td>
+                      <td>{{ oppointment.phone }}</td>
+                      <td>{{ oppointment.email }}</td>
+                      <td>{{ oppointment.date }}</td>
+                      <td>{{ oppointment.description }}</td>
+                      
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+        {% endif %}
+        
+      </div>
+    
+{% endblock %}
